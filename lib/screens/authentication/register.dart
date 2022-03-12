@@ -108,7 +108,7 @@ class _RegisterState extends State<Register> {
           if (_formKey.currentState!.validate()) {
             setState(() => loading = true);
             dynamic result =
-                await _auth.signInWithEmailAndPassword(email, password);
+            await _auth.signInWithEmailAndPassword(email, password);
             if (result == null) {
               setState(() {
                 error = 'could not sign in';
@@ -146,62 +146,62 @@ class _RegisterState extends State<Register> {
     return loading
         ? Loading()
         : Scaffold(
-            body: AnnotatedRegion<SystemUiOverlayStyle>(
-              value: SystemUiOverlayStyle.light,
-              child: GestureDetector(
-                child: Stack(children: <Widget>[
-                  Container(
-                    height: double.infinity,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage("images/background.png"),
-                          fit: BoxFit.cover,
-                        ),
-                        gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.topCenter,
-                            colors: [
-                              Color(0x6633cccc),
-                              Color(0x9933cccc),
-                              Color(0xcc33cccc),
-                              Color(0xff33cccc),
-                            ])),
-                    child: SingleChildScrollView(
-                      physics: AlwaysScrollableScrollPhysics(),
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 25,
-                        vertical: 120,
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Center(
-                              child: CircleAvatar(
-                                  radius: 50.0,
-                                  backgroundColor:
-                                      Color.fromARGB(71, 158, 158, 158)
-                                          .withOpacity(
-                                    0.5,
-                                  ),
-                                  child: const Icon(
-                                    Icons.person,
-                                    color: Colors.white,
-                                    size: 40,
-                                  ))),
-                          SizedBox(height: 50),
-                          buildEmail(),
-                          SizedBox(height: 20),
-                          buildPassword(),
-                          SizedBox(height: 50),
-                          buildRegisterBtn(),
-                        ],
-                      ),
-                    ),
-                  )
-                ]),
+      body: AnnotatedRegion<SystemUiOverlayStyle>(
+        value: SystemUiOverlayStyle.light,
+        child: GestureDetector(
+          child: Stack(children: <Widget>[
+            Container(
+              height: double.infinity,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("images/background.png"),
+                    fit: BoxFit.cover,
+                  ),
+                  gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.topCenter,
+                      colors: [
+                        Color(0x6633cccc),
+                        Color(0x9933cccc),
+                        Color(0xcc33cccc),
+                        Color(0xff33cccc),
+                      ])),
+              child: SingleChildScrollView(
+                physics: AlwaysScrollableScrollPhysics(),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 25,
+                  vertical: 120,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Center(
+                        child: CircleAvatar(
+                            radius: 50.0,
+                            backgroundColor:
+                            Color.fromARGB(71, 158, 158, 158)
+                                .withOpacity(
+                              0.5,
+                            ),
+                            child: const Icon(
+                              Icons.person,
+                              color: Colors.white,
+                              size: 40,
+                            ))),
+                    SizedBox(height: 50),
+                    buildEmail(),
+                    SizedBox(height: 20),
+                    buildPassword(),
+                    SizedBox(height: 50),
+                    buildRegisterBtn(),
+                  ],
+                ),
               ),
-            ),
-          );
+            )
+          ]),
+        ),
+      ),
+    );
   }
 }

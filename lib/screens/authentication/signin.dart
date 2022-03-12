@@ -141,19 +141,19 @@ class _signInState extends State<signIn> {
             context, MaterialPageRoute(builder: (context) => Register())),
         child: RichText(
             text: TextSpan(children: [
-          TextSpan(
-              text: 'Don\'t have an Account?',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
-                  fontWeight: FontWeight.w500)),
-          TextSpan(
-              text: 'Sign Up',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 10,
-                  fontWeight: FontWeight.bold))
-        ])));
+              TextSpan(
+                  text: 'Don\'t have an Account?',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500)),
+              TextSpan(
+                  text: 'Sign Up',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold))
+            ])));
   }
 
   @override
@@ -167,19 +167,19 @@ class _signInState extends State<signIn> {
               height: double.infinity,
               width: double.infinity,
               decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("images/background.png"),
-                      fit: BoxFit.cover,
-                    ),
+                  image: DecorationImage(
+                    image: AssetImage("images/background.png"),
+                    fit: BoxFit.cover,
+                  ),
                   gradient: LinearGradient(
                       begin: Alignment.topCenter,
                       end: Alignment.topCenter,
                       colors: [
-                    Color(0x6633cccc),
-                    Color(0x9933cccc),
-                    Color(0xcc33cccc),
-                    Color(0xff33cccc),
-                  ])),
+                        Color(0x6633cccc),
+                        Color(0x9933cccc),
+                        Color(0xcc33cccc),
+                        Color(0xff33cccc),
+                      ])),
               child: SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(
