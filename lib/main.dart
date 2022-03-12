@@ -1,28 +1,70 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:codemate/screens/authentication/authenticate.dart';
-import 'package:provider/provider.dart';
-import 'package:codemate/models/user.dart';
-import 'package:codemate/services/auth.dart';
-import 'package:codemate/screens/home/wrapper.dart';
-import '';
-void main() async{
+import 'package:codemate/main2.dart';
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(MaterialApp(
+    theme:
+    ThemeData(primaryColor: Colors.red, accentColor: Colors.yellowAccent),
+    debugShowCheckedModeBanner: false,
+    home: SplashScreen(),
+  ));
 }
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _navigationtohome();
+  }
+  _navigationtohome()async{
+    await Future.delayed(Duration(seconds:2), () {});
+    Navigator.pushReplacement(context,
+        MaterialPageRoute(builder: (context) =>Homepage()));
+  }
   Widget build(BuildContext context) {
-    return StreamProvider<Usser?>.value(
-      initialData: Usser(uid: ""),
-      value: AuthService().user,
-      child: MaterialApp(home: wrapper()),
-    );
-    return MaterialApp(
-      home: Authenticate(),
+    return Scaffold(
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+          Container(
+            color: Colors.black
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    //Image.network('https://ibb.co/CMBgCyf'),
+                    Padding(padding: EdgeInsets.only(top:60.0,bottom: 20.0)),
+                    Image(image: AssetImage('images/splash_Screen.png')),
+                  ],
+                ),
+              ),
+              Expanded(flex:1,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        CircularProgressIndicator(),
+                        Padding(
+                          padding: EdgeInsets.only(top: 20.0),
+                        ),
+                      ]
+                  ))
+            ],
+          )
+        ],
+      ),
     );
   }
 }

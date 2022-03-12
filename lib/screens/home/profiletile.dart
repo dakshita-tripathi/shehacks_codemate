@@ -12,7 +12,10 @@ class profileTile extends StatelessWidget {
         child: Card(
             margin: EdgeInsets.only(top: 20.0),
             child: ListTile(
-              leading: CircleAvatar(radius: 40.0, backgroundColor: Colors.grey),
+              leading: CircleAvatar(
+                radius: 15,
+                backgroundImage: AssetImage('images/user.png'),
+              ),
               title: Text(profile.name),
               subtitle: Text(
                   'has ${profile.cc_rank} stars on CodeChef \n has ${profile.he_rank} rank on HackerEarth \n has ${profile.apk_points} points in APK Month \n and is interested in ${profile.interests}'),

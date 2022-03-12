@@ -18,16 +18,16 @@ class _homeState extends State<home> {
       backgroundColor: Colors.teal,
       appBar: AppBar(
           title: Text('your codemates'),
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
           actions: <Widget>[
             FlatButton.icon(
-              icon: Icon(Icons.person),
-              label: Text('logout'),
+              icon: Icon(Icons.person,color: Colors.white,),
+              label: Text('logout',style: TextStyle(color: Colors.white),),
               onPressed: () async {
                 await _auth.signOut();
               },
             ),]),
       body: ProfileList(),
-    );
+      );
   }
 }

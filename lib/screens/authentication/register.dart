@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:codemate/services/auth.dart';
 import 'package:codemate/screens/home/home.dart';
-import 'package:codemate/screens/authentication/register.dart';
+import 'package:codemate/screens/authentication/signin.dart';
 import 'package:flutter/services.dart';
 import 'package:codemate/screens/home/update.dart';
 import 'package:codemate/shared/loading.dart';
@@ -45,10 +45,10 @@ class _RegisterState extends State<Register> {
                 prefixIcon: Icon(Icons.email, color: Color(0xff33cccc)),
                 hintText: 'Email',
                 hintStyle: TextStyle(color: Colors.black38)),
-            validator: (val) => val!.isEmpty ? 'Enter an email' : null,
+              validator: (val) => val!.isEmpty ? 'Enter an email' : null,
             onChanged: (val) {
               setState(() => email = val);
-            },
+            }
           ),
         )
       ],
@@ -105,17 +105,15 @@ class _RegisterState extends State<Register> {
       child: RaisedButton(
         elevation: 5,
         onPressed: () async {
-          if (_formKey.currentState!.validate()) {
-            setState(() => loading = true);
             dynamic result =
-            await _auth.signInWithEmailAndPassword(email, password);
+            await _auth.registerWithEmailAndPassword(email, password);
             if (result == null) {
               setState(() {
-                error = 'could not sign in';
+                error = 'could not register';
                 loading = false;
               });
             }
-          }
+
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => update()),
@@ -205,3 +203,83 @@ class _RegisterState extends State<Register> {
     );
   }
 }
+/**class Register extends StatefulWidget {
+  //final Function toggleView;
+  //Register({required this.toggleView});
+  @override
+  _RegisterState createState() => _RegisterState();
+}
+class _RegisterState extends State<Register> {
+  final AuthService _auth = AuthService();
+  final _formKey = GlobalKey<FormState>();
+  String email = '';bool loading = false;
+  String password = ''; String error='';
+  @override
+  Widget build(BuildContext context) {
+    return loading?Loading():Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          backgroundColor: Colors.yellow,
+          title: Text("Register"),
+          actions: <Widget>[
+            FlatButton.icon(
+              icon: Icon(Icons.person),
+              label: Text('Sign In'),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>signIn()),);
+                //widget.toggleView();
+              },
+            ),
+          ],
+        ),
+        body: Container(
+            padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
+            child: Form(
+                key: _formKey,
+                child: Column(children: <Widget>[
+                  SizedBox(height: 20.0),
+                  TextFormField(
+                    //decoration: textInputDecoration.copyWith(hintText: 'email'),
+                    validator: (val) =>
+                    val!.isEmpty ? 'Enter an email' : null,
+                    onChanged: (val) {
+                      setState(() => email = val);
+                    },
+                  ),
+                  SizedBox(height: 20.0),
+                  TextFormField(
+                    //decoration: textInputDecoration.copyWith(hintText: 'password'),
+                    obscureText: true,
+                    validator: (value) => value!.length < 6
+                        ? 'Enter a password of 6 or more characters'
+                        : null,
+                    onChanged: (val) {
+                      setState(() => password = val);
+                    },
+                  ),
+                  SizedBox(height: 20.0),
+                  RaisedButton(
+                      color: Colors.yellow,
+                      child: Text(
+                        'Register',
+                        style: TextStyle(color: Colors.black),
+                      ),
+                      onPressed:() async {
+                        if (_formKey.currentState!.validate()) {
+                          setState(() => loading = true);
+                          dynamic result = await _auth.registerWithEmailAndPassword(email, password);
+                          if (result == null) {
+                            setState(() {
+                              error = 'please supply a valid email'; loading=false;
+                            });
+                          }
+                        }
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>update()),);
+                      }
+                  ),
+                  SizedBox(height: 12.0),
+                  Text(error,style: TextStyle(color: Colors.red, fontSize: 14.0),),
+                ]))));
+  }
+}**/
+

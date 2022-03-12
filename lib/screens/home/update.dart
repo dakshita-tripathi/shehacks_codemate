@@ -4,6 +4,7 @@ import 'package:codemate/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:codemate/shared/constraints.dart';
 import 'package:codemate/screens/home/home.dart';
+import 'package:codemate/homeScreen.dart';
 class update extends StatefulWidget {
   const update({Key? key}) : super(key: key);
 
@@ -24,15 +25,26 @@ class _updateState extends State<update> {
     final user = Provider.of<Usser?>(context);
     final List<String> cc_rank = ['*', '**', '***', '****', '*****','******','*******'];
     return Scaffold(
-        body:Form(
+        body:Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("images/background.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+        child:Form(
             key: _formKey,
             child: Column(children: <Widget>[
+              Padding(padding: EdgeInsets.only(top:30.0)),
               Text(
                 'update your profile',
-                style: TextStyle(fontSize: 20.0),
+                style: TextStyle(color:Colors.white,fontSize: 35.0,fontWeight: FontWeight.bold),
               ),
               //padding: Padding()
               SizedBox(height: 20.0),
+              Padding(padding: EdgeInsets.only(left: 20.0,right: 20.0),),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Your Name'),
                 validator: (val) =>
@@ -40,6 +52,7 @@ class _updateState extends State<update> {
                 onChanged: (val) => setState(() => _currentName = val),
               ),
               SizedBox(height: 20.0),
+              Padding(padding: EdgeInsets.only(left: 20.0,right: 20.0),),
               DropdownButtonFormField(
                   decoration: textInputDecoration.copyWith(hintText: 'Codechef Stars'),
                   items: cc_rank.map((cc_rank) {
@@ -51,6 +64,7 @@ class _updateState extends State<update> {
                   onChanged: (val) =>
                       setState(() => current_cc_rank = val! as String)),
               SizedBox(height: 20.0),
+              Padding(padding: EdgeInsets.only(left: 20.0,right: 20.0),),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Your HackerEarth rank'),
                 validator: (val) =>
@@ -58,6 +72,7 @@ class _updateState extends State<update> {
                 onChanged: (val) => setState(() => current_he_rank = int.parse(val)),
               ),
               SizedBox(height: 20.0),
+              Padding(padding: EdgeInsets.only(left: 20.0,right: 20.0),),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Your Aproksha month points'),
                 validator: (val) =>
@@ -65,6 +80,7 @@ class _updateState extends State<update> {
                 onChanged: (val) => setState(() => current_apk_points = int.parse(val)),
               ),
               SizedBox(height: 20.0),
+              Padding(padding: EdgeInsets.only(left: 20.0,right: 20.0),),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Your interests'),
                 validator: (val) =>
@@ -73,7 +89,7 @@ class _updateState extends State<update> {
               ),
               SizedBox(height: 20.0),
               RaisedButton(
-                color: Colors.yellow,
+                color: Colors.white,
                 child: Text(
                   'Update',
                   style: TextStyle(color: Colors.black, fontSize: 20.0),
@@ -87,10 +103,10 @@ class _updateState extends State<update> {
                       current_he_rank ,
                       current_interests,
                     );
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>home()),);
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()),);
                   }
                 },
-              )]))
+              )])))
     );
   }
 }

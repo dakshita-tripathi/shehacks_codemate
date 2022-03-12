@@ -56,7 +56,16 @@ class _ProfileListState extends State<ProfileList> {
       });
     });
     return loading? Loading():Scaffold(
-        body: StreamBuilder<QuerySnapshot>(
+        body:Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("images/background.png"),
+                fit: BoxFit.cover,
+              ),
+            ),
+        child:StreamBuilder<QuerySnapshot>(
             stream:
             FirebaseFirestore.instance.collection('profile').snapshots(),
             builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -75,6 +84,6 @@ class _ProfileListState extends State<ProfileList> {
                 );
 
               }}
-        ));
+        )));
   }
 }

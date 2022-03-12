@@ -5,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:codemate/screens/authentication/register.dart';
 import 'package:codemate/screens/home/home.dart';
 import 'package:codemate/shared/loading.dart';
+import 'package:codemate/homeScreen.dart';
 class signIn extends StatefulWidget {
   //const signIn({Key? key}) : super(key: key);
 
@@ -111,8 +112,6 @@ class _signInState extends State<signIn> {
       child: RaisedButton(
         elevation: 5,
         onPressed: () async {
-          if (_formKey.currentState!.validate()) {
-            setState(()=> loading=true);
             dynamic result = await _auth.signInWithEmailAndPassword(email, password);
             if (result == null) {
               setState(() {
@@ -120,8 +119,7 @@ class _signInState extends State<signIn> {
               }
               );
             }
-          }
-          Navigator.push(context, MaterialPageRoute(builder: (context)=>home()),);
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()),);
         },
         padding: EdgeInsets.all(15),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
@@ -171,15 +169,7 @@ class _signInState extends State<signIn> {
                     image: AssetImage("images/background.png"),
                     fit: BoxFit.cover,
                   ),
-                  gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.topCenter,
-                      colors: [
-                        Color(0x6633cccc),
-                        Color(0x9933cccc),
-                        Color(0xcc33cccc),
-                        Color(0xff33cccc),
-                      ])),
+                  ),
               child: SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(
