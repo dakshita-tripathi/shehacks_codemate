@@ -14,4 +14,27 @@ class DatabaseService {
       'apk_points': apk_points
     });
   }
+  List<Profile> _profilelistFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return Profile(
+        name: doc['name'] ?? '',
+        cc_rank: doc['cc_rank'] ,
+        he_rank: doc['he_rank'] ?? 0,//
+        apk_points: doc['apk_points'] ?? 0,//
+      );
+    }).toList();
+  }
+
+  UserData _userDataFromSnapshot(DocumentSnapshot snapshot) {
+    return UserData(
+        uid: uid,
+        name: snapshot['name'],
+        cc_rank: snapshot['codechef rank'],
+        he_rank: snapshot['hackerearth rank'],
+        apk_points: snapshot['aproksha month points']);
+  }
+
+  Stream<List<Profile>> get profile {
+    return profileCollection.snapshots().map(_profilelistFromSnapshot);
+  }
 }
