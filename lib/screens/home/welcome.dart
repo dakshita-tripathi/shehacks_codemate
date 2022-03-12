@@ -21,7 +21,7 @@ class _WelcomeState extends State<Welcome> {
         child: Text(
           'SIGNIN',
           style: TextStyle(
-              color: Color(0xff33cccc),
+              color: Color.fromRGBO(0, 29, 30, 11.8),
               fontSize: 18,
               fontWeight: FontWeight.bold),
         ),
@@ -38,11 +38,11 @@ class _WelcomeState extends State<Welcome> {
         onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()),),
         padding: EdgeInsets.all(15),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        color: Color(0xff33cccc),
+        color: Colors.white,
         child: Text(
           'REGISTER',
           style: TextStyle(
-              color: Color(0xfff2f2f2),
+              color: Color.fromRGBO(0, 29, 30, 11.8),
               fontSize: 18,
               fontWeight: FontWeight.bold),
         ),
@@ -60,21 +60,7 @@ class _WelcomeState extends State<Welcome> {
             Container(
               height: double.infinity,
               width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/background.png"),
-                    fit: BoxFit.cover
-                ),
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Color(0x6633cccc),
-                      Color(0x9933cccc),
-                      Color(0xcc33cccc),
-                      Color(0xff33cccc),
-                    ]),
-              ),
+              color: Color.fromRGBO(3,26,30, 50),
               child: SingleChildScrollView(
                 physics: AlwaysScrollableScrollPhysics(),
                 padding: EdgeInsets.symmetric(
