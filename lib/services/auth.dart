@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:codemate/models/user.dart';
+import 'package:codemate/services/database.dart';
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   Usser? _userFormFirebaseUser(User? user) {
@@ -13,6 +14,7 @@ class AuthService {
     try{
       UserCredential result=await _auth.signInWithEmailAndPassword(email: email, password: password);
       User? user=result.user;
+      await DatabaseService(uid: user!.uid).updateUserData('newTeammate','*',0,0);
       return _userFormFirebaseUser(user);
     }
     catch(e){
@@ -24,6 +26,7 @@ class AuthService {
     try{
       UserCredential result=await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user=result.user;
+      await DatabaseService(uid: user!.uid).updateUserData('newTeammate','*',0,0);
       return _userFormFirebaseUser(user);
     }
     catch(e){
