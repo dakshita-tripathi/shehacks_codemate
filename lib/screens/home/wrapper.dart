@@ -3,6 +3,7 @@ import 'package:codemate/models/user.dart';
 import 'package:codemate/screens/authentication/authenticate.dart';
 import 'package:provider/provider.dart';
 import 'package:codemate/screens/home/home.dart';
+import 'package:codemate/screens/home/welcome.dart';
 class wrapper extends StatelessWidget {
   const wrapper({Key? key}) : super(key: key);
 
@@ -10,7 +11,7 @@ class wrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = Provider.of<Usser?>(context);
     if( user==null){
-      return Authenticate(); //not signed in->welcome->login/sign in
+      return Welcome(); //not signed in->welcome->login/sign in
     }
     else{
       return home();//call home screen

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:codemate/screens/home/profilelist.dart';
 import 'package:codemate/services/auth.dart';
+import 'package:codemate/shared/loading.dart';
 class home extends StatefulWidget {
   const home({Key? key}) : super(key: key);
 
@@ -10,9 +11,10 @@ class home extends StatefulWidget {
 
 class _homeState extends State<home> {
   final AuthService _auth = AuthService();
+  bool loading=false;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading? Loading():Scaffold(
       backgroundColor: Colors.teal,
       appBar: AppBar(
           title: Text('your codemates'),

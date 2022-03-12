@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:codemate/models/profile.dart';
 import 'package:codemate/screens/home/profileTile.dart';
 import 'package:codemate/models/user.dart';
+import 'package:codemate/shared/loading.dart';
 class ProfileList extends StatefulWidget {
 
   //int c=0;
@@ -15,9 +16,12 @@ class ProfileList extends StatefulWidget {
 
 class _ProfileListState extends State<ProfileList> {
   @override
-  int c = 0;
+  int c = 0; bool loading=false;
   List<String> profileName= [];
   List<String> profilecc=[];
+  List<int> profileherank=[];
+  List<int> profileapk=[];
+  List<String> profileinterests=[];
   Widget build(BuildContext context) {
     final user = Provider.of<Usser?>(context);
     final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('profile').snapshots();
@@ -33,8 +37,25 @@ class _ProfileListState extends State<ProfileList> {
         print(profilecc[index]);
       });
     });
-
-    return Scaffold(
+    _usersStream.forEach((profile){
+      profile.docs.asMap().forEach((index,data){
+        profileherank.add(profile.docs[index]['he_rank']);
+        print(profileherank[index]);
+      });
+    });
+    _usersStream.forEach((profile){
+      profile.docs.asMap().forEach((index,data){
+        profileapk.add(profile.docs[index]['apk_points']);
+        print(profileapk[index]);
+      });
+    });
+    _usersStream.forEach((profile){
+      profile.docs.asMap().forEach((index,data){
+        profileinterests.add(profile.docs[index]['interests']);
+        print(profileinterests[index]);
+      });
+    });
+    return loading? Loading():Scaffold(
         body: StreamBuilder<QuerySnapshot>(
             stream:
             FirebaseFirestore.instance.collection('profile').snapshots(),
@@ -46,7 +67,7 @@ class _ProfileListState extends State<ProfileList> {
                 return Text('snapshot does not have data');
               }
               else {
-                final profile = List<Profile>.generate(c, (i) => Profile(name: profileName[i], cc_rank: profilecc[i], he_rank: 0, apk_points: 0),);
+                final profile = List<Profile>.generate(c, (i) => Profile(name: profileName[i], cc_rank: profilecc[i],he_rank: profileherank[i], apk_points: profileapk[i], interests: profileinterests[i] ),);
                 return ListView.builder(
                   itemCount: profile.length,
                   itemBuilder: (context, index) {

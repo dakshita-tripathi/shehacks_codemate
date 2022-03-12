@@ -14,7 +14,7 @@ class AuthService {
     try{
       UserCredential result=await _auth.signInWithEmailAndPassword(email: email, password: password);
       User? user=result.user;
-      await DatabaseService(uid: user!.uid).updateUserData('newTeammate','*',0,0);
+      await DatabaseService(uid: user!.uid).updateUserData('newTeammate','*',0,0,'competitive coding');
       return _userFormFirebaseUser(user);
     }
     catch(e){
@@ -26,7 +26,7 @@ class AuthService {
     try{
       UserCredential result=await _auth.createUserWithEmailAndPassword(email: email, password: password);
       User? user=result.user;
-      await DatabaseService(uid: user!.uid).updateUserData('newTeammate','*',0,0);
+      await DatabaseService(uid: user!.uid).updateUserData('newTeammate','*',0,0,'competitive coding');
       return _userFormFirebaseUser(user);
     }
     catch(e){
