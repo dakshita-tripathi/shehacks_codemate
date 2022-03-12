@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:codemate/services/auth.dart';
+import 'package:codemate/screens/home/update.dart';
+import 'package:codemate/screens/authentication/signin.dart';
 class Register extends StatefulWidget {
   const Register({Key? key}) : super(key: key);
 
@@ -18,7 +20,17 @@ class _RegisterState extends State<Register> {
         appBar: AppBar(
           backgroundColor: Colors.yellow,
           title: Text("Register"),
-
+          actions: <Widget>[
+            FlatButton.icon(
+              icon: Icon(Icons.person),
+              label: Text('Sign In'),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>signIn()),);
+                //widget.toggleView();
+              },
+            ),
+          ],
+          //to add a signin button
         ),
         body: Container(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -56,7 +68,7 @@ class _RegisterState extends State<Register> {
                               error = 'please supply a valid email';
                             });
                           }
-
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>update()),);
 
                       }
                   ),

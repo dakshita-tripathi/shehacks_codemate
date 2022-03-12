@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:codemate/services/auth.dart';
+import 'package:codemate/screens/home/home.dart';
+import 'package:codemate/screens/authentication/register.dart';
 class signIn extends StatefulWidget {
   //const signIn({Key? key}) : super(key: key);
   @override
@@ -18,6 +20,17 @@ class _signInState extends State<signIn> {
         appBar: AppBar(
           backgroundColor: Colors.yellow,
           title: Text("sign in"),
+          actions: <Widget>[
+            FlatButton.icon(
+              //style: style,
+              icon: Icon(Icons.person),
+              onPressed: () {
+                //widget.toggleView();
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Register()),);
+              },
+              label: Text('Register'),
+            )
+          ],
         ),
         body: Container(
             padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 50.0),
@@ -55,6 +68,7 @@ class _signInState extends State<signIn> {
                             }
                             );
                           }
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>home()),);
                         }
     ),
 
