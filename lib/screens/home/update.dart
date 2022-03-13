@@ -90,6 +90,7 @@ class _updateState extends State<update> {
                 val!.isEmpty ? 'please enter your interests' : null,
                 onChanged: (val) => setState(() => current_interests = val),
               ),
+              SizedBox(height: 20.0),
               Padding(padding: EdgeInsets.only(left: 20.0,right: 20.0),),
               TextFormField(
                 decoration: textInputDecoration.copyWith(hintText: 'Your contact number'),
