@@ -22,6 +22,7 @@ class _ProfileListState extends State<ProfileList> {
   List<int> profileherank=[];
   List<int> profileapk=[];
   List<String> profileinterests=[];
+  List<String> profilepno=[];
   Widget build(BuildContext context) {
     final user = Provider.of<Usser?>(context);
     final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('profile').snapshots();
@@ -55,6 +56,12 @@ class _ProfileListState extends State<ProfileList> {
         print(profileinterests[index]);
       });
     });
+    _usersStream.forEach((profile){
+      profile.docs.asMap().forEach((index,data){
+        profilepno.add(profile.docs[index]['pno']);
+        print(profilepno[index]);
+      });
+    });
     return loading? Loading():Scaffold(
         body:Container(
             height: double.infinity,
@@ -76,7 +83,7 @@ class _ProfileListState extends State<ProfileList> {
                 return Text('snapshot does not have data');
               }
               else {
-                final profile = List<Profile>.generate(c, (i) => Profile(name: profileName[i], cc_rank: profilecc[i],he_rank: profileherank[i], apk_points: profileapk[i], interests: profileinterests[i] ),);
+                final profile = List<Profile>.generate(c, (i) => Profile(name: profileName[i], cc_rank: profilecc[i],he_rank: profileherank[i], apk_points: profileapk[i], interests: profileinterests[i] , pno:profilepno[i]),);
                 return ListView.builder(
                   itemCount: profile.length,
                   itemBuilder: (context, index) {

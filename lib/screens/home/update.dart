@@ -18,6 +18,7 @@ class _updateState extends State<update> {
   int current_he_rank = 0;
   int current_apk_points = 0;
   String current_interests='';
+  String pno='';
   String uid='';
   final _formKey = GlobalKey<FormState>();
   @override
@@ -34,6 +35,8 @@ class _updateState extends State<update> {
                 fit: BoxFit.cover,
               ),
             ),
+        child:SingleChildScrollView(
+        reverse:true,
         child:Form(
             key: _formKey,
             child: Column(children: <Widget>[
@@ -87,6 +90,13 @@ class _updateState extends State<update> {
                 val!.isEmpty ? 'please enter your interests' : null,
                 onChanged: (val) => setState(() => current_interests = val),
               ),
+              Padding(padding: EdgeInsets.only(left: 20.0,right: 20.0),),
+              TextFormField(
+                decoration: textInputDecoration.copyWith(hintText: 'Your contact number'),
+                validator: (val) =>
+                val!.isEmpty ? 'please enter your contact number' : null,
+                onChanged: (val) => setState(() => pno= val),
+              ),
               SizedBox(height: 20.0),
               RaisedButton(
                 color: Colors.white,
@@ -102,11 +112,12 @@ class _updateState extends State<update> {
                       current_apk_points ,
                       current_he_rank ,
                       current_interests,
+                      pno,
                     );
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()),);
                   }
                 },
               )])))
-    );
+    ));
   }
 }

@@ -18,6 +18,6 @@ class profileTile extends StatelessWidget {
               ),
               title: Text(profile.name),
               subtitle: Text(
-                  'has ${profile.cc_rank} stars on CodeChef \n has ${profile.he_rank} rank on HackerEarth \n has ${profile.apk_points} points in APK Month \n and is interested in ${profile.interests}'),
+                  'has ${profile.cc_rank} stars on CodeChef \n has ${profile.he_rank} rank on HackerEarth \n has ${profile.apk_points} points in APK Month \n and is interested in ${profile.interests} \n Contact number: ${profile.pno}'),
             )));
   }}
